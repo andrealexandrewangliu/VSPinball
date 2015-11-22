@@ -4,11 +4,14 @@ using System.Collections;
 public class Cannon : ObserveableMeter {
 	public string key;
 	public float maxPower = 350000;
+	public float minPower = 250000;
 	public float powerGrowth = 350000;
 	public Vector2 direction = new Vector2 (0, 1);
+	public bool aiActive = true;
 	private bool wasKeyDown = false;
 	private float power = 0;
 	private GameObject ball = null;
+	private float targetPower = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +21,33 @@ public class Cannon : ObserveableMeter {
 	// Update is called once per frame
 	void LateUpdate () 
 	{
+		if (aiActive) {
+			AiShoot();
+		} else {
+			ManualShoot();
+		}
+	
+	}
+	
+	private void AiShoot(){
+		bool isBallIn = ball != null;
+		if (isBallIn) {
+			if (targetPower == 0) {
+				targetPower = Random.Range (minPower, maxPower);
+			}
+			power += powerGrowth * Time.deltaTime;
+			if (power > maxPower)
+				power = maxPower;
+			if (power >= targetPower) {
+				targetPower = 0;
+				ShootBall ();
+			}
+		} else {
+			power = 0;
+		}
+	}
+
+	private void ManualShoot(){
 		if (key.Length == 0)
 			return;
 		float isKeyDown = Input.GetAxis (key);
@@ -34,7 +64,6 @@ public class Cannon : ObserveableMeter {
 				ShootBall();
 			}
 		}
-	
 	}
 
 	void ShootBall(){

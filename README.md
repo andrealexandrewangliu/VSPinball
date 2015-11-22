@@ -5,5 +5,5 @@ Player vs Player pinball
  - Sounds
  - Victory messages
  - Menu and configurations
- - AI modes
+ - AI Tilt Zones
  - Android Port
