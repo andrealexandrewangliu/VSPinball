@@ -16,6 +16,8 @@ public class Globals {
 	public int initialLives = 3;
 	public bool vertical = true;
 	public bool trackBall = true;
+	public bool player1AI = false;
+	public bool player2AI = true;
 
 	public Globals(){
 		SetLives();
