@@ -4,6 +4,8 @@ using System.Collections;
 public class BallPhysics : MonoBehaviour {
 	public float gravity = 0.5f;
 	private Rigidbody2D ballrigidbody;
+	private Vector2 savedVelocity;
+	private float savedAngularVelocity;
 
 	// Use this for initialization
 	void Start () {
@@ -26,5 +28,19 @@ public class BallPhysics : MonoBehaviour {
 			coll.gameObject.GetComponent<Endbox>().ballEnter(gameObject);
 			ballrigidbody.velocity = new Vector2(0,0);
 		}
+	}
+
+	public void Pause() {
+		Rigidbody2D rigidbody = GetComponent<Rigidbody2D> ();
+		savedVelocity = rigidbody.velocity;
+		savedAngularVelocity = rigidbody.angularVelocity;
+		rigidbody.isKinematic = true; 
+	}
+	
+	public void Resume() {
+		Rigidbody2D rigidbody = GetComponent<Rigidbody2D> ();
+		rigidbody.isKinematic = false;
+		rigidbody.velocity = savedVelocity;
+		rigidbody.angularVelocity = savedAngularVelocity;
 	}
 }

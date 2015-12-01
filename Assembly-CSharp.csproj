@@ -45,23 +45,24 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\BallPhysics.cs" />
-     <Compile Include="Assets\Scripts\CameraConfig.cs" />
-     <Compile Include="Assets\Scripts\CameraOrientationLabels.cs" />
-     <Compile Include="Assets\Scripts\Cannon.cs" />
-     <Compile Include="Assets\Scripts\Endbox.cs" />
-     <Compile Include="Assets\Scripts\Flipper.cs" />
-     <Compile Include="Assets\Scripts\FlipperHandle.cs" />
+     <Compile Include="Assets\Scripts\Control\Cannon.cs" />
+     <Compile Include="Assets\Scripts\Control\Flipper.cs" />
+     <Compile Include="Assets\Scripts\Control\Gate.cs" />
+     <Compile Include="Assets\Scripts\Control\TableTilt.cs" />
+     <Compile Include="Assets\Scripts\Control\TriggerZone.cs" />
+     <Compile Include="Assets\Scripts\GUI\CameraOrientationLabels.cs" />
+     <Compile Include="Assets\Scripts\GUI\CameraSettings.cs" />
+     <Compile Include="Assets\Scripts\GUI\GameSettings.cs" />
+     <Compile Include="Assets\Scripts\GUI\LifeCounter.cs" />
+     <Compile Include="Assets\Scripts\GUI\NumericInputFieldMinMax.cs" />
+     <Compile Include="Assets\Scripts\GUI\ObserveableMeter.cs" />
+     <Compile Include="Assets\Scripts\GUI\PowerMeter.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
-     <Compile Include="Assets\Scripts\Gate.cs" />
+     <Compile Include="Assets\Scripts\Game\BallPhysics.cs" />
+     <Compile Include="Assets\Scripts\Game\CameraConfig.cs" />
+     <Compile Include="Assets\Scripts\Game\Endbox.cs" />
      <Compile Include="Assets\Scripts\Globals.cs" />
-     <Compile Include="Assets\Scripts\LifeCounter.cs" />
-     <Compile Include="Assets\Scripts\NumericInputFieldMinMax.cs" />
-     <Compile Include="Assets\Scripts\ObserveableMeter.cs" />
-     <Compile Include="Assets\Scripts\PowerMeter.cs" />
      <Compile Include="Assets\Scripts\RoundUpdateable.cs" />
-     <Compile Include="Assets\Scripts\TableTilt.cs" />
-     <Compile Include="Assets\Scripts\TriggerZone.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

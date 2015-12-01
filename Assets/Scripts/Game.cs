@@ -29,14 +29,15 @@ public class Game : MonoBehaviour {
 		player1.right.aiActive = Globals.data.player1AI;
 		player1.tilt.aiActive = Globals.data.player1AI;
 		
-		player2.cannon.aiActive = Globals.data.player1AI;
-		player2.left.aiActive = Globals.data.player1AI;
-		player2.right.aiActive = Globals.data.player1AI;
-		player2.tilt.aiActive = Globals.data.player1AI;
+		player2.cannon.aiActive = Globals.data.player2AI;
+		player2.left.aiActive = Globals.data.player2AI;
+		player2.right.aiActive = Globals.data.player2AI;
+		player2.tilt.aiActive = Globals.data.player2AI;
 	}
 
 	public void NewGame(){
 		int randomInt = Random.Range (0, 2);
+		ball.SetActive (true);
 		if (randomInt < 1) {
 			ball.transform.position = player1.cannon.gameObject.transform.position;
 		} else {
@@ -51,6 +52,7 @@ public class Game : MonoBehaviour {
 	
 	public void Demo(){
 		int randomInt = Random.Range (0, 2);
+		ball.SetActive (true);
 		if (randomInt < 1) {
 			ball.transform.position = player1.cannon.gameObject.transform.position;
 		} else {
@@ -96,5 +98,31 @@ public class Game : MonoBehaviour {
 		} else {
 			Globals.data.initialLives = 1;
 		}
+	}
+
+	private void setPlayerSpecificPause(PlayerSpecific player, bool enabled){
+		player.cannon.enabled = enabled;
+		player.left.enabled = enabled;
+		player.right.enabled = enabled;
+		player.tilt.enabled = enabled;
+		if (enabled) {
+			player.left.GetComponent<Rigidbody2D> ().WakeUp ();
+			player.right.GetComponent<Rigidbody2D> ().WakeUp ();
+		} else {
+			player.left.GetComponent<Rigidbody2D> ().Sleep ();
+			player.right.GetComponent<Rigidbody2D> ().Sleep ();
+		}
+	}
+
+	public void Pause(){
+		setPlayerSpecificPause(player1,false);
+		setPlayerSpecificPause(player2,false);
+		ball.GetComponent<BallPhysics> ().Pause();
+	}
+
+	public void Resume(){
+		setPlayerSpecificPause(player1,true);
+		setPlayerSpecificPause(player2,true);
+		ball.GetComponent<BallPhysics> ().Resume();
 	}
 }
