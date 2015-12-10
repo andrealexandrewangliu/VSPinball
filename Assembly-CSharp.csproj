@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Game\CameraConfig.cs" />
      <Compile Include="Assets\Scripts\Game\Endbox.cs" />
      <Compile Include="Assets\Scripts\Globals.cs" />
+     <Compile Include="Assets\Scripts\OpenUrlScript.cs" />
      <Compile Include="Assets\Scripts\RoundUpdateable.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

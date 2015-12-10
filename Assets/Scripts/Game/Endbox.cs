@@ -5,16 +5,18 @@ public class Endbox : MonoBehaviour {
 	public int playerId;
 	public GameObject respawnPoint;
 
+	public Game gameMainObject;
+
 	public void ballEnter(GameObject ball){
 		ball.transform.position = respawnPoint.transform.position;
 		if (playerId == 1) {
 			Globals.data.takePlayer1Life ();
-			if (!Globals.data.isPlayer1Alive()){
+			if (!gameMainObject.CheckWinCondition()){
 				ball.SetActive(false);
 			}
 		} else if (playerId == 2) {
 			Globals.data.takePlayer2Life ();
-			if (!Globals.data.isPlayer2Alive()){
+			if (!gameMainObject.CheckWinCondition()){
 				ball.SetActive(false);
 			}
 		}

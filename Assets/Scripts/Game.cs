@@ -13,6 +13,11 @@ public class Game : MonoBehaviour {
 	}
 	public PlayerSpecific player1;
 	public PlayerSpecific player2;
+	
+	public GameObject inGameMenuButton;
+	public GameObject blueWinnerMessage;
+	public GameObject redWinnerMessage;
+
 	// Use this for initialization
 	void Start () {
 		Demo ();
@@ -124,5 +129,31 @@ public class Game : MonoBehaviour {
 		setPlayerSpecificPause(player1,true);
 		setPlayerSpecificPause(player2,true);
 		ball.GetComponent<BallPhysics> ().Resume();
+	}
+
+	/** 
+	 * Returns:
+	 *  - False when the game ends
+	 *  - True when the both players are active
+	 **/
+	public bool CheckWinCondition(){
+		if (!Globals.data.isPlayer1Alive ()) {
+			RedWin();
+			return false;
+		}else if (!Globals.data.isPlayer2Alive ()) {
+			BlueWin();
+			return false;
+		}
+		return true;
+	}
+
+	private void BlueWin(){
+		inGameMenuButton.SetActive (false);
+		blueWinnerMessage.SetActive (true);
+	}
+	
+	private void RedWin(){
+		inGameMenuButton.SetActive (false);
+		redWinnerMessage.SetActive (true);
 	}
 }
