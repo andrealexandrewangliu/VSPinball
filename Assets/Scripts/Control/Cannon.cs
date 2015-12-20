@@ -8,6 +8,8 @@ public class Cannon : ObserveableMeter {
 	public float powerGrowth = 350000;
 	public Vector2 direction = new Vector2 (0, 1);
 	public bool aiActive = true;
+	public AudioSource chargeAudioSource;
+	public AudioSource shootAudioSource;
 	private bool wasKeyDown = false;
 	private float power = 0;
 	private GameObject ball = null;
@@ -35,6 +37,9 @@ public class Cannon : ObserveableMeter {
 			if (targetPower == 0) {
 				targetPower = Random.Range (minPower, maxPower);
 			}
+			if (!chargeAudioSource.isPlaying){
+				chargeAudioSource.Play ();
+			}
 			power += powerGrowth * Time.deltaTime;
 			if (power > maxPower)
 				power = maxPower;
@@ -43,6 +48,9 @@ public class Cannon : ObserveableMeter {
 				ShootBall ();
 			}
 		} else {
+			if (chargeAudioSource.isPlaying){
+				chargeAudioSource.Stop();
+			}
 			power = 0;
 		}
 	}
@@ -55,10 +63,16 @@ public class Cannon : ObserveableMeter {
 			if (!wasKeyDown) {
 				wasKeyDown = true;
 			}
+			if (!chargeAudioSource.isPlaying){
+				chargeAudioSource.Play ();
+			}
 			power += powerGrowth * Time.deltaTime;
 			if (power > maxPower)
 				power = maxPower;
 		} else {
+			if (chargeAudioSource.isPlaying){
+				chargeAudioSource.Stop();
+			}
 			if (wasKeyDown) {
 				wasKeyDown = false;
 				ShootBall();
@@ -70,7 +84,10 @@ public class Cannon : ObserveableMeter {
 		if (ball != null) {
 			Vector2 force = power * direction;
 			ball.GetComponent<Rigidbody2D>().AddForce(force);
+
 		}
+		//chargeAudioSource.Stop();
+		shootAudioSource.Play ();
 		power = 0;
 	}
 

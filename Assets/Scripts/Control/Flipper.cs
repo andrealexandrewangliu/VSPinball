@@ -10,6 +10,9 @@ public class Flipper : MonoBehaviour {
 	public float aiDelayTime = 0.3f;
 	public bool aiActive = true;
 	public TriggerZone aiRadar;
+	public AudioClip clipFlipUp;
+	public AudioClip clipFlipDown;
+	public AudioSource audioSource;
 	private bool wasKeyDown = false;
 	private float targetRotation = 0;
 	private float aiDelay = 0;
@@ -49,11 +52,13 @@ public class Flipper : MonoBehaviour {
 		if (isKeyDown) {
 			if (!wasKeyDown) {
 				wasKeyDown = true;
+				audioSource.PlayOneShot(clipFlipUp);
 				targetRotation = flipperRotation;
 			}
 		} else {
 			if (wasKeyDown) {
 				wasKeyDown = false;
+				audioSource.PlayOneShot(clipFlipDown);
 				targetRotation = baseRotation;
 			}
 		}
@@ -84,11 +89,13 @@ public class Flipper : MonoBehaviour {
 		if (isKeyDown > 0) {
 			if (!wasKeyDown) {
 				wasKeyDown = true;
+				audioSource.PlayOneShot(clipFlipUp);
 				targetRotation = flipperRotation;
 			}
 		} else {
 			if (wasKeyDown) {
 				wasKeyDown = false;
+				audioSource.PlayOneShot(clipFlipDown);
 				targetRotation = baseRotation;
 			}
 		}

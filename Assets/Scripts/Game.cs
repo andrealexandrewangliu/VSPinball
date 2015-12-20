@@ -43,6 +43,7 @@ public class Game : MonoBehaviour {
 	public void NewGame(){
 		int randomInt = Random.Range (0, 2);
 		ball.SetActive (true);
+		ball.GetComponent<BallPhysics> ().Reset ();
 		if (randomInt < 1) {
 			ball.transform.position = player1.cannon.gameObject.transform.position;
 		} else {
@@ -58,6 +59,8 @@ public class Game : MonoBehaviour {
 	public void Demo(){
 		int randomInt = Random.Range (0, 2);
 		ball.SetActive (true);
+		Resume ();
+		ball.GetComponent<BallPhysics> ().Reset ();
 		if (randomInt < 1) {
 			ball.transform.position = player1.cannon.gameObject.transform.position;
 		} else {
@@ -129,6 +132,35 @@ public class Game : MonoBehaviour {
 		setPlayerSpecificPause(player1,true);
 		setPlayerSpecificPause(player2,true);
 		ball.GetComponent<BallPhysics> ().Resume();
+	}
+	
+	private void SetSound(AudioSource audio){
+		audio.mute = Globals.data.muteSound;
+		audio.volume = Globals.data.sound;
+	}
+
+	public void SetSound(){
+		SetSound(player1.cannon.chargeAudioSource);
+		SetSound(player1.cannon.shootAudioSource);
+		SetSound(player1.left.audioSource);
+		SetSound(player1.right.audioSource);
+
+		SetSound(player2.cannon.chargeAudioSource);
+		SetSound(player2.cannon.shootAudioSource);
+		SetSound(player2.left.audioSource);
+		SetSound(player2.right.audioSource);
+	}
+	
+	public void MuteSound(){
+		player1.cannon.chargeAudioSource.mute = true;
+		player1.cannon.shootAudioSource.mute = true;
+		player1.left.audioSource.mute = true;
+		player1.right.audioSource.mute = true;
+		
+		player2.cannon.chargeAudioSource.mute = true;
+		player2.cannon.shootAudioSource.mute = true;
+		player2.left.audioSource.mute = true;
+		player2.right.audioSource.mute = true;
 	}
 
 	/** 

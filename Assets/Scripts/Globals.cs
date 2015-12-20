@@ -18,6 +18,8 @@ public class Globals {
 	public bool trackBall = true;
 	public bool player1AI = false;
 	public bool player2AI = true;
+	public float sound = 1;
+	public bool muteSound = false;
 
 	public Globals(){
 		SetLives();

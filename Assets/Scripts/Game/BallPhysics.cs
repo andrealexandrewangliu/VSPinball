@@ -43,4 +43,10 @@ public class BallPhysics : MonoBehaviour {
 		rigidbody.velocity = savedVelocity;
 		rigidbody.angularVelocity = savedAngularVelocity;
 	}
+	public void Reset() {
+		Rigidbody2D rigidbody = GetComponent<Rigidbody2D> ();
+		rigidbody.isKinematic = false;
+		rigidbody.velocity = new Vector2 (0, 0);
+		rigidbody.angularVelocity = 0;
+	}
 }
